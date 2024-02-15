@@ -6,7 +6,8 @@ to enable users to 'chat' with the plant. The script fetches and displays variou
 leaf conductivity, humidity, temperature, and other environmental factors. It offers a unique user
 experience by allowing queries to be posed to the plant, which are then answered based on the collected
 data, simulating a conversation. The application also includes visualizations of the data using Matplotlib
-and manages environment variables for secure API and database access.
+and manages environment variables for secure API and database access. For a visual demonstration of the code
+visit: https://www.youtube.com/watch?v=l6ZMMZqI1Pg
 """
 
 
