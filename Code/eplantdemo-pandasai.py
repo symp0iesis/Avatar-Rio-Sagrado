@@ -1,3 +1,15 @@
+"""
+This Python script powers a Streamlit web application designed for an innovative interaction with a plant.
+The app integrates with a MySQL database to retrieve real-time data about the plant's physiological and
+environmental conditions. It utilizes the PandasAI library, which in turn employs OpenAI's language models,
+to enable users to 'chat' with the plant. The script fetches and displays various metrics such as root and
+leaf conductivity, humidity, temperature, and other environmental factors. It offers a unique user
+experience by allowing queries to be posed to the plant, which are then answered based on the collected
+data, simulating a conversation. The application also includes visualizations of the data using Matplotlib
+and manages environment variables for secure API and database access.
+"""
+
+
 import streamlit as st
 import pandas as pd
 import mysql.connector
