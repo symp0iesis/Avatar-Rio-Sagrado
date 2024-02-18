@@ -4,3 +4,4 @@ requests
 sounddevice
 soundfile
 streamlit
+pyrubberband

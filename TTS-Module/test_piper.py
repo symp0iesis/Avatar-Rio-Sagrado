@@ -6,11 +6,13 @@ import numpy as np
 import requests
 from time import sleep
 from sounddevice import play, wait
+import pyrubberband
 import nltk
 nltk.download('punkt')
 
 HEADER_SIZE = 44
 SAMPLE_RATE = 21000
+SPEECH_SPEED = 0.835
 URL = "http://localhost:5000"
 
 
@@ -61,8 +63,9 @@ if input_text and submit_button:
         print(sentence)
         wav_data = text_to_speech(URL, sentence)
         if wav_data is not None:
-            audio_queue.append(wav_data)
-            file_data.extend(wav_data)
+            slowed_wav_data = pyrubberband.time_stretch(wav_data, SAMPLE_RATE, SPEECH_SPEED)
+            audio_queue.append(slowed_wav_data)
+            file_data.extend(slowed_wav_data)
         else:
             st.error("Failed to convert text to speech")
             raise Exception("Failed to convert text to speech")
