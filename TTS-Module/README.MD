@@ -9,8 +9,14 @@ For this method, we use Coqui TTS module, capable to clone a voice and speak the
 ## 2. Piper TTS
 
 This method uses Piper TTS, which is a TTS module optimized for Rasperry Pi 4. In order to use this, we need to setup the Piper server running the script *piper_setup.sh*  with *sudo* from the folder *piper-server-setup/* and run the server using the command  *piper_server.sh -m `<model name>`* from the same folder. Since the TTS model is used for text in Portuguese, the used model name in this case will be *pt_BR-faber-medium* which will automatically be downloaded. The recommended command for running the TTS engine for Portuguese would be:
+
 ```
 ./piper_server.sh -m pt_BR-faber-medium
 ```
 
 Other speakers, languages and models can be found [here](https://huggingface.co/rhasspy/piper-voices/tree/main).
+
+If you want to test this model via an GUI, firstly, install streamlit Python package, and then run the following command:
+```
+python3 -m streamlit run test_piper_gui.py`
+```
