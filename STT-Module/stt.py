@@ -1,4 +1,5 @@
 import torch
+from time import time
 import pyaudio
 import numpy as np
 from STTEngine.STTEngineWav2Vec2 import STTEngine
@@ -40,8 +41,11 @@ while True:
         speech_data = np.append(speech_data, data_np)
     elif end_speech and not start_speech:
         speech_data = np.append(speech_data, data_np)
+        start_time = time()
         speech_text = stt_engine.speech_to_text(speech_data, SAMPLING_RATE)
+        end_time = time()
         print(f"Transcription: {speech_text}")
+        print(f"Time taken: {end_time - start_time:.2f} seconds\n")
         speech_data = np.array([])
         start_speech = False
         end_speech = False

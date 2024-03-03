@@ -1,5 +1,6 @@
 from transformers import WhisperProcessor, WhisperForConditionalGeneration
 import re
+import torch
 
 
 class STTEngine:
@@ -16,11 +17,15 @@ class STTEngine:
         self.processor_stt = WhisperProcessor.from_pretrained("openai/whisper-tiny")
         self.model_stt = WhisperForConditionalGeneration.from_pretrained("openai/whisper-tiny")
         self.model_stt.config.forced_decoder_ids = None
+        torch.set_grad_enabled(False)
+        self.model_stt.eval()
+        # torch.set_num_threads(4)
 
     def speech_to_text(self, speech_data, sampling_rate):
-        input_features = self.processor_stt(speech_data, sampling_rate=sampling_rate, return_tensors="pt").input_features
-        predicted_ids = self.model_stt.generate(input_features)
-        transcription = self.processor_stt.batch_decode(predicted_ids, skip_special_tokens=True, clean_up_tokenization_spaces=True)
-        pattern = r"\s*<\|\d+\.\d+\|>\s*"
-        text = re.sub(pattern, "", transcription[0])
-        return text
+        with torch.no_grad():
+            input_features = self.processor_stt(speech_data, sampling_rate=sampling_rate, return_tensors="pt").input_features
+            predicted_ids = self.model_stt.generate(input_features)
+            transcription = self.processor_stt.batch_decode(predicted_ids, skip_special_tokens=True, clean_up_tokenization_spaces=True)
+            pattern = r"\s*<\|\d+\.\d+\|>\s*"
+            text = re.sub(pattern, "", transcription[0])
+            return text
