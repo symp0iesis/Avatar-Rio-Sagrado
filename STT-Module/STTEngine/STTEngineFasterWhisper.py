@@ -1,5 +1,4 @@
 from faster_whisper import WhisperModel
-import re
 import torch
 
 
