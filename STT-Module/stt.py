@@ -2,7 +2,7 @@ import torch
 from time import time
 import pyaudio
 import numpy as np
-from STTEngine.STTEngineWav2Vec2 import STTEngine
+from STTEngine.STTEngineFasterWhisper import STTEngine
 
 SAMPLING_RATE = 16000
 VAD_WINDOW_LENGTH = 1600

@@ -1,11 +1,12 @@
+import os
+import librosa
 import time
-from STTEngine.STTEngineWav2Vec2 import STTEngine
+from STTEngine.STTEngineWhisper import STTEngine
 
 # load model and processor for speech-to-text
 stt_engine = STTEngine()
 
-import librosa
-speech_data, sampling_rate = librosa.load("output.wav", sr=16000)
+speech_data, sampling_rate = librosa.load(os.path.join(os.path.dirname(os.path.abspath(__file__)), "output.wav"), sr=16000)
 
 # test speech-to-text engine for the inference time and the quality of the transcription
 start_time = time.time()
