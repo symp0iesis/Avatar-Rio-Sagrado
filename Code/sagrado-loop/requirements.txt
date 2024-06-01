@@ -1,0 +1,11 @@
+#STT
+transformers
+torch
+PyAudio
+faster-whisper
+torchaudio
+
+#TTS
+Soundfile
+TTS #Specific to TTS engine
+sounddevice
