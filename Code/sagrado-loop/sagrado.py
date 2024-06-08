@@ -1,10 +1,12 @@
+import os, threading
 from time import time, sleep
+import numpy as np
+from numpy import array
 
 #Set up STT
 
 import torch
 import pyaudio
-import numpy as np
 
 #Modification to make code work on Mayowa's computer.
 # import os
@@ -43,69 +45,118 @@ print('Done.\n')
 
 #Set up TTS
 
-# import os
-# from soundfile import write as sf_write
-# from torch.cuda import is_available as cuda_is_available
-# import threading
-# from numpy import array
-# from TTS.api import TTS
-# from sounddevice import play, wait
-# import nltk
+print('Initializing Text-to-Speech...')
+from soundfile import write as sf_write
+from sounddevice import play, wait
+import nltk
+# print(' Downloading nltk punkt...')
 # nltk.download('punkt')
+# print(' Done.')
+
+def init_coqui_tts():
+    from torch.cuda import is_available as cuda_is_available
+    from TTS.api import TTS
+    global split_text_into_sentences, text_to_speech
+
+    def load_tts_model(device):
+        return TTS("tts_models/multilingual/multi-dataset/xtts_v2").to(device)
 
 
-# print('Initializing Text-to-Speech...')
+    def split_text_into_sentences(text):
+        sentences = nltk.sent_tokenize(text)
+        for i in range(len(sentences)):
+            if sentences[i][-1] == '.':
+                sentences[i] = sentences[i][:-1]
+        return sentences
 
-# @st.cache_resource
-# def load_tts_model(device):
-#     return TTS("tts_models/multilingual/multi-dataset/xtts_v2").to(device)
+    device = "cuda" if cuda_is_available() else "cpu"
+    # device = "cpu"
+    tts = load_tts_model(device)
+
+    def text_to_speech(sentence):
+        wav_data = tts.tts(text=sentence, language='pt', speaker_wav="TTS_Module/cr7.wav", split_sentences=False)
+        return wav_data
+
+def init_piper_tts():
+    import requests
+    import pyrubberband
+    global split_text_into_sentences, text_to_speech
+    HEADER_SIZE = 44
+    SAMPLE_RATE = 21000
+    SPEECH_SPEED = 0.835
 
 
-# def split_text_into_sentences(text):
-#     sentences = nltk.sent_tokenize(text)
-#     for i in range(len(sentences)):
-#         if sentences[i][-1] == '.':
-#             sentences[i] = sentences[i][:-1]
-#     return sentences
+    def split_text_into_sentences(text):
+        sentences = nltk.sent_tokenize(text)
+        return sentences
+
+    def bytes_to_sound(data):
+        sound_data = np.frombuffer(data, dtype=np.int16, count=len(data) // 2).astype(np.float64) / 32768.0
+        return sound_data
+
+    def text_to_speech(text):
+        URL = "http://localhost:5000"
+        resp = requests.get(URL, params={'text': text})
+        if resp.status_code == 200:
+            wav_data = bytes_to_sound(resp.content[HEADER_SIZE:])
+            if wav_data is not None:
+                slowed_wav_data = pyrubberband.time_stretch(wav_data, SAMPLE_RATE, SPEECH_SPEED)
+                return slowed_wav_data
+            else:
+                raise Exception("Failed to convert text to speech")
+        return None
 
 
-# def play_audio():
-#     global audio_queue
-#     while True:
-#         sleep(0.3)
-#         if len(audio_queue) > 0:
-#             wav_data = audio_queue.pop(0)
-#             play(array(wav_data), 24000)
-#             wait()
+
+# Select TTS Backend to Use:
+# init_coqui_tts()
+init_piper_tts() #The Piper server needs to be running
+
+def play_audio():
+    print('play_audio() called')
+    global audio_queue
+    while True:
+        sleep(0.3)
+        if len(audio_queue) > 0:
+            wav_data = audio_queue.pop(0)
+            print('Playing generated audio..', type(wav_data))
+            play(array(wav_data), 24000)
+            wait()
 
 
-# device = "cuda" if cuda_is_available() else "cpu"
-# # device = "cpu"
-# tts = load_tts_model(device)
 
-# # Global audio queue to store the audio data
-# audio_queue = []
-# file_data = []
+# Global audio queue to store the audio data
+audio_queue = []
+file_data = []
 
-# # Start the audio playback thread
-# audio_thread = threading.Thread(target=play_audio)
+# Start the audio playback thread
+audio_thread = threading.Thread(target=play_audio)
 # audio_thread.daemon = True
-# audio_thread.start()
+audio_thread.start()
 
 
-# def speak(input_text):
-#     sentences = split_text_into_sentences(input_text)
-#     for sentence in sentences:
-#         wav_data = tts.tts(text=sentence, language=language_code, speaker_wav="cr7.wav", split_sentences=False)
-#         audio_queue.append(wav_data)
-#         file_data.extend(wav_data)
+def speak(input_text):
+    sentences = split_text_into_sentences(input_text)
+    for sentence in sentences:
+        wav_data = text_to_speech(sentence)
+        if wav_data is None:
+            raise Exception("Piper Server Error: Error generating speech from Piper TTS.")
+        # print('Generated audio data')
+        audio_queue.append(wav_data)
+        file_data.extend(wav_data)
+        # print('Audio array length: ', len(audio_queue))
 
-#     sf_write("output.wav", array(file_data), 24000)
-#     # st.audio("output.wav", format="audio/wav")
-#     # os.remove("output.wav")
+    print('Writing audio to file...')
+    sf_write("output.wav", array(file_data), 24000)
+    # os.remove("output.wav")
 
 
-# print('Done.\n')
+print('Done.\n')
+
+
+# # To just test the TTS
+# avatar_response = 'Olá, eu estou sempre fluindo, sempre renovando-me nas águas que percorrem o município de Morretes até a baía de Antonina. Como posso ajudar você hoje?'
+# speak(avatar_response)
 
 
 
@@ -141,6 +192,28 @@ json_data = {
     'input': 'Hello! Please speak English to me. What are you about?',
 }
 
+
+# def avatar_response(speech_text):
+#     # print('Getting avatar response...')
+
+#     json_data['input'] = speech_text
+#     response = requests.post(
+#         generate_response_url,
+#         headers=headers,
+#         json=json_data,
+#     )
+
+#     #Issue communicating with Retune, and obtaining avatar response
+#     if response.status_code != 200:
+#         avatar_response = "Retune Error." #In Portuguese? What would Danilo want?
+#     else:
+#         avatar_response = response.json()['response']['value']
+
+#     print('Avatar response: ', avatar_response)
+
+#     speak(avatar_response)
+
+
 print('Done.\n')
 
 
@@ -155,16 +228,16 @@ while True:
     data_np = np.frombuffer(stream.read(VAD_WINDOW_LENGTH), dtype=np.float32)
     speech_dict = vad_iterator(data_np, return_seconds=True)
     if speech_dict:
-        print(speech_dict)
+        print('Speech dict: ', speech_dict)
         if 'start' in speech_dict:
             start_speech = True
             end_speech = False
         elif 'end' in speech_dict:
             end_speech = True
             start_speech = False
-
-    speech_data = np.append(speech_data, data_np)        
-    if end_speech and not start_speech:
+    if start_speech and not end_speech:
+        speech_data = np.append(speech_data, data_np)        
+    elif end_speech and not start_speech:
         speech_data = np.append(speech_data, data_np)
         # start_time = time()
         speech_text = stt_engine.speech_to_text(speech_data, SAMPLING_RATE)
@@ -172,7 +245,7 @@ while True:
         print(f"Transcription: {speech_text}")
         # print(f"Time taken: {end_time - start_time:.2f} seconds\n")
 
-        print('Getting avatar response...')
+        # print('Getting avatar response...')
 
         json_data['input'] = speech_text
         response = requests.post(
@@ -188,10 +261,15 @@ while True:
             avatar_response = response.json()['response']['value']
 
         print('Avatar response: ', avatar_response)
-        # speak(avatar_response)
-        # speech_data = np.array([])
-        # start_speech = False
-        # end_speech = False
+
+        speak(avatar_response)
+
+        # avatar_response_thread = threading.Thread(target=avatar_response, args=(speech_text,))
+        # avatar_response_thread.start()
+        
+        speech_data = np.array([])
+        start_speech = False
+        end_speech = False
 
 
 

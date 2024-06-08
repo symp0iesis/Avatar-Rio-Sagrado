@@ -1,5 +1,7 @@
+#Mayowa: File I set up to test Piper TTS without having to go through Streamlit.
+
+print('Initializing...')
 import os
-import streamlit as st
 from soundfile import write as sf_write
 import threading
 import numpy as np
@@ -8,7 +10,9 @@ from time import sleep
 from sounddevice import play, wait
 import pyrubberband
 import nltk
-nltk.download('punkt')
+# print(' Downloading nltk punkt...')
+# nltk.download('punkt')
+# print(' Done.')
 
 HEADER_SIZE = 44
 SAMPLE_RATE = 21000
@@ -42,12 +46,6 @@ def play_audio():
             play(np.array(wav_data), SAMPLE_RATE)
             wait()
 
-
-st.set_page_config(page_title="Text to Speech Raspberry Pi", page_icon="🔊", layout="centered", initial_sidebar_state="collapsed")
-st.title('Text to Speech Raspberry Pi')
-input_text = st.text_input('Enter the text you want to convert to speech in Portuguese')
-submit_button = st.button('Convert to speech')
-
 # Global audio queue to store the audio data
 audio_queue = []
 file_data = []
@@ -57,11 +55,11 @@ audio_thread = threading.Thread(target=play_audio)
 audio_thread.daemon = True
 audio_thread.start()
 
-if input_text and submit_button:
+def process(input_text):
     print('Received text input: ', input_text)
     sentences = split_text_into_sentences(input_text)
     for sentence in sentences:
-        # print(sentence)
+        print('Processing: ', sentence)
         print('Obtaining audio data from Piper Server...')
         wav_data = text_to_speech(URL, sentence)
         print('Done.')
@@ -71,9 +69,11 @@ if input_text and submit_button:
             file_data.extend(slowed_wav_data)
             print('Added audio data to queue.')
         else:
-            st.error("Failed to convert text to speech")
             raise Exception("Failed to convert text to speech")
 
     sf_write("output.wav", file_data, SAMPLE_RATE)
-    st.audio("output.wav", format="audio/wav")
     # os.remove("output.wav")
+
+print('Done.')
+
+process('Ola, como estas?')
