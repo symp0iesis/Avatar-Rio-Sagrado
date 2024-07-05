@@ -7,5 +7,5 @@ __pycache__
 **/.env
 
 
-sagrado-loop/output.wav
-sagrado-loop/piper_server_output.txt
+Code/sagrado-loop/output.wav
+Code/sagrado-loop/piper_server_output.txt
