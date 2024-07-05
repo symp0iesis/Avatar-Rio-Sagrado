@@ -1,2 +1,11 @@
 .DS_Store
 **/.DS_Store
+
+__pycache__
+**/__pycache__
+
+**/.env
+
+
+sagrado-loop/output.wav
+sagrado-loop/piper_server_output.txt

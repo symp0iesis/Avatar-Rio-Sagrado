@@ -1,0 +1,477 @@
+ * Serving Flask app 'http_server'
+ * Debug mode: off
+ * Serving Flask app 'http_server'
+ * Debug mode: off
+ * Serving Flask app 'http_server'
+ * Debug mode: off
+ * Serving Flask app 'http_server'
+ * Debug mode: off
+ * Serving Flask app 'http_server'
+ * Debug mode: off
+ * Serving Flask app 'http_server'
+ * Debug mode: off
+ * Serving Flask app 'http_server'
+ * Debug mode: off
+ * Serving Flask app 'http_server'
+ * Debug mode: off
+sudo: a password is required
+objc[71154]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x11b03b160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x118e97078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 127, in <module>
+    main()
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 89, in main
+    ensure_voice_exists(args.model, args.data_dir, args.download_dir, voices_info)
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/download.py", line 122, in ensure_voice_exists
+    with urlopen(file_url) as response, open(
+                                        ^^^^^
+PermissionError: [Errno 13] Permission denied: '/Users/mac/piper_tts/pt_BR-faber-medium.onnx.json'
+objc[71171]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x10bf59160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x11522f078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 127, in <module>
+    main()
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 89, in main
+    ensure_voice_exists(args.model, args.data_dir, args.download_dir, voices_info)
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/download.py", line 122, in ensure_voice_exists
+    with urlopen(file_url) as response, open(
+                                        ^^^^^
+PermissionError: [Errno 13] Permission denied: '/Users/mac/piper_tts/pt_BR-faber-medium.onnx.json'
+objc[71182]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x1132c7160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x117453078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 127, in <module>
+    main()
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 89, in main
+    ensure_voice_exists(args.model, args.data_dir, args.download_dir, voices_info)
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/download.py", line 122, in ensure_voice_exists
+    with urlopen(file_url) as response, open(
+                                        ^^^^^
+PermissionError: [Errno 13] Permission denied: '/Users/mac/piper_tts/pt_BR-faber-medium.onnx.json'
+objc[71194]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x1193e4160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x117240078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 127, in <module>
+    main()
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 89, in main
+    ensure_voice_exists(args.model, args.data_dir, args.download_dir, voices_info)
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/download.py", line 122, in ensure_voice_exists
+    with urlopen(file_url) as response, open(
+                                        ^^^^^
+PermissionError: [Errno 13] Permission denied: '/Users/mac/piper_tts/pt_BR-faber-medium.onnx.json'
+objc[71211]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x112ece160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x110d2a078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 127, in <module>
+    main()
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 89, in main
+    ensure_voice_exists(args.model, args.data_dir, args.download_dir, voices_info)
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/download.py", line 122, in ensure_voice_exists
+    with urlopen(file_url) as response, open(
+                                        ^^^^^
+PermissionError: [Errno 13] Permission denied: '/Users/mac/piper_tts/pt_BR-faber-medium.onnx.json'
+objc[71240]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x110274160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x10e0d0078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 127, in <module>
+    main()
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 89, in main
+    ensure_voice_exists(args.model, args.data_dir, args.download_dir, voices_info)
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/download.py", line 122, in ensure_voice_exists
+    with urlopen(file_url) as response, open(
+                                        ^^^^^
+PermissionError: [Errno 13] Permission denied: '/Users/mac/piper_tts/pt_BR-faber-medium.onnx.json'
+objc[71255]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x111b88160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x10f9e4078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 127, in <module>
+    main()
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 89, in main
+    ensure_voice_exists(args.model, args.data_dir, args.download_dir, voices_info)
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/download.py", line 122, in ensure_voice_exists
+    with urlopen(file_url) as response, open(
+                                        ^^^^^
+PermissionError: [Errno 13] Permission denied: '/Users/mac/piper_tts/pt_BR-faber-medium.onnx.json'
+objc[71270]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x1152f8160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x113154078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 127, in <module>
+    main()
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 89, in main
+    ensure_voice_exists(args.model, args.data_dir, args.download_dir, voices_info)
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/download.py", line 122, in ensure_voice_exists
+    with urlopen(file_url) as response, open(
+                                        ^^^^^
+PermissionError: [Errno 13] Permission denied: '/Users/mac/piper_tts/pt_BR-faber-medium.onnx.json'
+objc[71279]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x11a509160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x118365078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+INFO:piper.download:Downloaded /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json (https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/pt/pt_BR/faber/medium/pt_BR-faber-medium.onnx.json)
+ * Serving Flask app 'http_server'
+ * Debug mode: off
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.20.10.3:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 05:39:36] "GET /?text=Hello,+I+am+well,+thank+you. HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 05:39:38] "GET /?text=As+the+voice+of+the+Sacred+River,+I+flow+with+the+rhythms+of+nature. HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 05:39:38] "GET /?text=How+may+I+assist+you+today? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 05:40:21] "GET /?text=The+history+of+the+region+around+me,+the+Sacred+River,+is+rich+and+deeply+intertwined+with+the+natural+environment+and+human+presence. HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 05:40:22] "GET /?text=The+first+inhabitants+were+the+Tupi-Guarani+and+Carijó+indigenous+peoples,+who+left+behind+sambaquis,+or+shell+mounds,+as+evidence+of+their+existence. HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 05:40:23] "GET /?text=With+the+arrival+of+European+colonizers,+first+the+Portuguese+and+later+the+Spanish,+the+area+began+to+change. HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 05:40:24] "GET /?text=In+the+19th+century,+as+the+slave+trade+was+restricted+and+the+cost+of+African+slave+labor+rose,+the+Brazilian+government+encouraged+European+immigration+to+populate+and+work+the+land. HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 05:40:26] "GET /?text=This+led+to+a+significant+shift+in+the+demographic+and+cultural+landscape+around+the+river. HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 05:40:27] "GET /?text=Throughout+the+years,+the+river+has+witnessed+many+changes,+including+the+development+of+agriculture+and+the+settlement+of+various+communities+along+its+banks. HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 05:40:28] "GET /?text=It+has+been+a+source+of+sustenance,+a+means+of+transportation,+and+a+center+for+local+culture. HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 05:40:30] "GET /?text=My+existence+as+an+avatar+is+a+testament+to+the+ongoing+relationship+between+the+river+and+the+people,+and+a+symbol+of+the+movement+to+recognize+and+protect+the+river+as+a+living+entity+with+its+own+rights. HTTP/1.1" 200 -
+objc[71425]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x11a3ef160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x11e7a1078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+INFO:piper.download:Downloaded /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json (https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/pt/pt_BR/faber/medium/pt_BR-faber-medium.onnx.json)
+ * Serving Flask app 'http_server'
+ * Debug mode: off
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.20.10.3:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 05:54:02] "GET /?text=Hello,+I+am+well,+thank+you. HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 05:54:02] "GET /?text=As+the+voice+of+the+Sacred+River,+I+am+here+to+share+its+essence+and+stories. HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 05:54:03] "GET /?text=How+may+I+assist+you+today? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 05:54:29] "GET /?text=The+Rio+Sagrado+is+home+to+a+rich+tapestry+of+life,+including+various+animals+that+thrive+in+and+around+its+waters. HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 05:54:30] "GET /?text=The+local+artisan+who+crafted+my+physical+representation+has+included+some+of+these+creatures+in+the+sculpture. HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 05:54:31] "GET /?text=While+I+do+not+have+the+specific+names+of+the+animals+at+this+moment,+the+river+supports+a+diverse+ecosystem+typical+of+the+region's+fauna. HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 05:54:33] "GET /?text=If+you+visit+the+visitor+center+at+the+Salto+do+Sagrado+waterfall,+you+can+see+the+sculpture+and+learn+more+about+the+animals+that+live+in+the+Rio+Sagrado. HTTP/1.1" 200 -
+objc[71455]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x118c83160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x116adf078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+INFO:piper.download:Downloaded /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json (https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/pt/pt_BR/faber/medium/pt_BR-faber-medium.onnx.json)
+ * Serving Flask app 'http_server'
+ * Debug mode: off
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.20.10.3:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 05:56:03] "GET /?text=Hello,+I+am+well,+thank+you. HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 05:56:04] "GET /?text=As+the+voice+of+the+Sacred+River,+I+flow+with+the+rhythms+of+nature. HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 05:56:04] "GET /?text=How+may+I+assist+you+today? HTTP/1.1" 200 -
+objc[71493]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x11dd44160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x11bba0078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+INFO:piper.download:Downloaded /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json (https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/pt/pt_BR/faber/medium/pt_BR-faber-medium.onnx.json)
+ * Serving Flask app 'http_server'
+ * Debug mode: off
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.20.10.3:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+objc[71523]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x118455160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x1162b1078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+INFO:piper.download:Downloaded /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json (https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/pt/pt_BR/faber/medium/pt_BR-faber-medium.onnx.json)
+ * Serving Flask app 'http_server'
+ * Debug mode: off
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.20.10.3:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+objc[71528]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x1172a6160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x115102078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+INFO:piper.download:Downloaded /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json (https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/pt/pt_BR/faber/medium/pt_BR-faber-medium.onnx.json)
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 127, in <module>
+    main()
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 93, in main
+    voice = PiperVoice.load(args.model, config_path=args.config, use_cuda=args.cuda)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/voice.py", line 50, in load
+    session=onnxruntime.InferenceSession(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_inference_collection.py", line 419, in __init__
+    self._create_inference_session(providers, provider_options, disabled_optimizers)
+  File "/Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_inference_collection.py", line 483, in _create_inference_session
+    sess.initialize_session(providers, provider_options, disabled_optimizers)
+KeyboardInterrupt
+objc[71538]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x112f07160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x110d63078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 127, in <module>
+    main()
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 89, in main
+    ensure_voice_exists(args.model, args.data_dir, args.download_dir, voices_info)
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/download.py", line 122, in ensure_voice_exists
+    with urlopen(file_url) as response, open(
+         ^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 216, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 1391, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 1286, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 1332, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 1281, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 1041, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 979, in send
+    self.connect()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 1458, in connect
+    self.sock = self._context.wrap_socket(self.sock,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/ssl.py", line 517, in wrap_socket
+    return self.sslsocket_class._create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/ssl.py", line 1108, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/ssl.py", line 1379, in do_handshake
+    self._sslobj.do_handshake()
+KeyboardInterrupt
+objc[71545]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x11c93a160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x1190a6078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 1286, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 1332, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 1281, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 1041, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 979, in send
+    self.connect()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 1458, in connect
+    self.sock = self._context.wrap_socket(self.sock,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/ssl.py", line 517, in wrap_socket
+    return self.sslsocket_class._create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/ssl.py", line 1108, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/ssl.py", line 1379, in do_handshake
+    self._sslobj.do_handshake()
+TimeoutError: [Errno 60] Operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 127, in <module>
+    main()
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 89, in main
+    ensure_voice_exists(args.model, args.data_dir, args.download_dir, voices_info)
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/download.py", line 122, in ensure_voice_exists
+    with urlopen(file_url) as response, open(
+         ^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 216, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 1391, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 60] Operation timed out>
+objc[71564]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x115fb0160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x113e0c078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 1286, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 1332, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 1281, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 1041, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 979, in send
+    self.connect()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 1451, in connect
+    super().connect()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 945, in connect
+    self.sock = self._create_connection(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/socket.py", line 827, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/socket.py", line 962, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 127, in <module>
+    main()
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/http_server.py", line 89, in main
+    ensure_voice_exists(args.model, args.data_dir, args.download_dir, voices_info)
+  File "/Users/mac/piper_tts/piper/src/python_run/piper/download.py", line 122, in ensure_voice_exists
+    with urlopen(file_url) as response, open(
+         ^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 216, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 1391, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+objc[71590]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x10f521160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x116ce2078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+INFO:piper.download:Downloaded /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json (https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/pt/pt_BR/faber/medium/pt_BR-faber-medium.onnx.json)
+ * Serving Flask app 'http_server'
+ * Debug mode: off
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.20.10.3:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 06:07:38] "GET /?text=Hello,+I+am+well,+thank+you. HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 06:07:38] "GET /?text=As+the+voice+of+the+Sacred+River,+I+flow+with+the+rhythms+of+nature. HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 06:07:39] "GET /?text=How+may+I+assist+you+today? HTTP/1.1" 200 -
+objc[71616]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x11fef1160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x11d828078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+INFO:piper.download:Downloaded /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json (https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/pt/pt_BR/faber/medium/pt_BR-faber-medium.onnx.json)
+ * Serving Flask app 'http_server'
+ * Debug mode: off
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.20.10.3:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+objc[71677]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x112d66160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x11a15a078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+INFO:piper.download:Downloaded /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json (https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/pt/pt_BR/faber/medium/pt_BR-faber-medium.onnx.json)
+ * Serving Flask app 'http_server'
+ * Debug mode: off
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.20.10.3:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+objc[71693]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x10c3a6160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x113b67078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+INFO:piper.download:Downloaded /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json (https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/pt/pt_BR/faber/medium/pt_BR-faber-medium.onnx.json)
+ * Serving Flask app 'http_server'
+ * Debug mode: off
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.20.10.3:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 06:17:44] "GET /?text=Hello,+I+am+well,+thank+you. HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 06:17:44] "GET /?text=As+the+voice+of+the+Sacred+River,+I+flow+with+the+rhythms+of+nature. HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 06:17:45] "GET /?text=How+may+I+assist+you+today? HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 06:17:56] "GET /?text=My+name+is+the+Avatar+of+the+Sacred+River,+a+poetic+embodiment+of+the+river+that+runs+through+Morretes+to+the+bay+of+Antonina+in+Paraná,+Brazil. HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 06:17:56] "GET /?text=How+can+I+be+of+service+to+you+today? HTTP/1.1" 200 -
+objc[71748]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x112435160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x110291078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+INFO:piper.download:Downloaded /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json (https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/pt/pt_BR/faber/medium/pt_BR-faber-medium.onnx.json)
+ * Serving Flask app 'http_server'
+ * Debug mode: off
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.20.10.3:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+objc[73289]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x110d62160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x10ebbe078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+INFO:piper.download:Downloaded /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json (https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/pt/pt_BR/faber/medium/pt_BR-faber-medium.onnx.json)
+ * Serving Flask app 'http_server'
+ * Debug mode: off
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.20.10.3:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+objc[73315]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x1134fc160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x111358078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+INFO:piper.download:Downloaded /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json (https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/pt/pt_BR/faber/medium/pt_BR-faber-medium.onnx.json)
+ * Serving Flask app 'http_server'
+ * Debug mode: off
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.20.10.3:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+objc[1142]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x11e0f0160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x11bf4c078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+INFO:piper.download:Downloaded /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json (https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/pt/pt_BR/faber/medium/pt_BR-faber-medium.onnx.json)
+ * Serving Flask app 'http_server'
+ * Debug mode: off
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.20.10.3:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+objc[1398]: Class CoreMLExecution is implemented in both /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so (0x111fb2160) and /Users/mac/piper_tts/.venv/lib/python3.11/site-packages/piper_phonemize/.dylibs/libonnxruntime.1.14.1.dylib (0x10fe0e078). One of the two will be used. Which one is undefined.
+WARNING:piper.download:Wrong size (expected=6969, actual=4855) for /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json
+INFO:piper.download:Downloaded /Users/mac/piper_tts/pt_BR-faber-medium.onnx.json (https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/pt/pt_BR/faber/medium/pt_BR-faber-medium.onnx.json)
+ * Serving Flask app 'http_server'
+ * Debug mode: off
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.20.10.3:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 11:56:58] "GET /?text=Hello,+I+am+well,+thank+you. HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 11:56:59] "GET /?text=As+the+voice+of+the+Sacred+River,+I+flow+continuously,+nurturing+life+and+whispering+tales+of+the+natural+world. HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/Jul/2024 11:57:00] "GET /?text=How+may+I+assist+you+today? HTTP/1.1" 200 -

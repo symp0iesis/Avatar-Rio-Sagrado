@@ -1,51 +1,51 @@
-import os, threading
+import os, threading, requests
 from time import time, sleep
 import numpy as np
 from numpy import array
 
-#Set up STT
-
-import torch
-import pyaudio
-
-#Modification to make code work on Mayowa's computer.
-# import os
-# os.environ['KMP_DUPLICATE_LIB_OK']='True'
+#To toggle modifications needed to make code work on Mayowa's computer
+on_mac = True
 
 
-print('Initializing Speech-to-Text...')
-
-from STT_Module.STTEngine.STTEngineFasterWhisper import STTEngine
-
-SAMPLING_RATE = 16000
-VAD_WINDOW_LENGTH = 1600
-VAD_THRESHOLD = 0.4
-MIN_SILENCE_DURATION_MS = 500
-SPEECH_PAD_MS = 100
-
-# load model and processor for speech-to-text
-stt_engine = STTEngine()
-
-# load model and utils for voice activity detection
-model_vad, utils_vad = torch.hub.load(repo_or_dir='snakers4/silero-vad', model='silero_vad', onnx=False)
-(_, _, _, VADIterator, _) = utils_vad
-vad_iterator = VADIterator(model_vad, threshold=VAD_THRESHOLD, min_silence_duration_ms=MIN_SILENCE_DURATION_MS, speech_pad_ms=SPEECH_PAD_MS)
-
-# initialize listening device
-p = pyaudio.PyAudio()
-stream = p.open(format=pyaudio.paFloat32, channels=1, rate=SAMPLING_RATE, input=True, frames_per_buffer=VAD_WINDOW_LENGTH)
-speech_data = np.array([])
-start_speech = False
-end_speech = False
-
-print('Done.\n')
+if on_mac == True:
+    os.environ['KMP_DUPLICATE_LIB_OK']='True'
 
 
+def init_stt():
+    print('Initializing Speech-to-Text...')
+    #Set up STT
+    import torch
+    import pyaudio
+    from STT_Module.STTEngine.STTEngineFasterWhisper import STTEngine
+    global stream, VAD_WINDOW_LENGTH, vad_iterator, speech_data, start_speech, end_speech, stt_engine, SAMPLING_RATE
+
+    SAMPLING_RATE = 16000
+    VAD_WINDOW_LENGTH = 1600
+    VAD_THRESHOLD = 0.4
+    MIN_SILENCE_DURATION_MS = 500
+    SPEECH_PAD_MS = 100
+
+    # load model and processor for speech-to-text
+    stt_engine = STTEngine()
+
+    # load model and utils for voice activity detection
+    model_vad, utils_vad = torch.hub.load(repo_or_dir='snakers4/silero-vad', model='silero_vad', onnx=False)
+    (_, _, _, VADIterator, _) = utils_vad
+    vad_iterator = VADIterator(model_vad, threshold=VAD_THRESHOLD, min_silence_duration_ms=MIN_SILENCE_DURATION_MS, speech_pad_ms=SPEECH_PAD_MS)
+
+    # initialize listening device
+    p = pyaudio.PyAudio()
+    stream = p.open(format=pyaudio.paFloat32, channels=1, rate=SAMPLING_RATE, input=True, frames_per_buffer=VAD_WINDOW_LENGTH)
+    speech_data = np.array([])
+    start_speech = False
+    end_speech = False
+
+    print('Done.\n')
+
+init_stt()
 
 
 #Set up TTS
-
-print('Initializing Text-to-Speech...')
 from soundfile import write as sf_write
 from sounddevice import play, wait
 import nltk
@@ -54,6 +54,7 @@ import nltk
 # print(' Done.')
 
 def init_coqui_tts():
+    print('Initializing Text-to-Speech...')
     from torch.cuda import is_available as cuda_is_available
     from TTS.api import TTS
     global split_text_into_sentences, text_to_speech
@@ -77,8 +78,8 @@ def init_coqui_tts():
         wav_data = tts.tts(text=sentence, language='pt', speaker_wav="TTS_Module/cr7.wav", split_sentences=False)
         return wav_data
 
-def init_piper_tts():
-    import requests
+def init_piper_tts(): 
+    print('Initializing Text-to-Speech...')
     import pyrubberband
     global split_text_into_sentences, text_to_speech
     HEADER_SIZE = 44
@@ -106,11 +107,22 @@ def init_piper_tts():
                 raise Exception("Failed to convert text to speech")
         return None
 
+    def startup_piper_server():
+        print('---------\n Starting up Piper Server...')
+        # import subprocess
+        # subprocess.run("cat TTS_Module/piper-server-setup/piper_server.sh; sh TTS_Module/piper-server-setup/piper_server.sh -m pt_BR-faber-medium >> piper_server_output.txt 2>&1", shell=True) #&>> piper_server_output.txt
+        os.system("sh TTS_Module/piper-server-setup/piper_server.sh -m pt_BR-faber-medium >> piper_server_output.txt 2>&1") #&>> piper_server_output.txt
+        print(' Done.\n---------')
+
+    #Start Piper webserver in a thread
+    piper_thread = threading.Thread(target=startup_piper_server)
+    piper_thread.start()
+
 
 
 # Select TTS Backend to Use:
 # init_coqui_tts()
-init_piper_tts() #The Piper server needs to be running
+init_piper_tts()
 
 def play_audio():
     print('play_audio() called')
@@ -119,7 +131,7 @@ def play_audio():
         sleep(0.3)
         if len(audio_queue) > 0:
             wav_data = audio_queue.pop(0)
-            print('Playing generated audio..', type(wav_data))
+            # print('Playing generated audio..', type(wav_data))
             play(array(wav_data), 24000)
             wait()
 
@@ -159,73 +171,74 @@ print('Done.\n')
 # speak(avatar_response)
 
 
+def init_retune():
+    print('Setting up Retune communication utils...')
+    #Utilities for Communicating with Retune Avatar
 
-print('Setting up Retune communication utils...')
-#Utilities for Communicating with Retune Avatar
-import requests
+    global json_data, generate_response_url, headers
 
-create_thread_url = 'https://retune.so/api/chat/11ee2b4b-d054-47f0-9771-310dd2eca1c4/new-thread'
-generate_response_url = 'https://retune.so/api/chat/11ee2b4b-d054-47f0-9771-310dd2eca1c4/response'
-
-
-headers = {
-    'Content-Type': 'application/json',
-    'X-Workspace-API-Key': '11ee2f36-c329-7e80-9c79-ff4ddae14db0',
-}
+    create_thread_url = 'https://retune.so/api/chat/11ee2b4b-d054-47f0-9771-310dd2eca1c4/new-thread'
+    generate_response_url = 'https://retune.so/api/chat/11ee2b4b-d054-47f0-9771-310dd2eca1c4/response'
 
 
-#Create new conversation thread
-print('\n Creating new conversation thread with Retune avatar...')
-response = requests.get(
-    create_thread_url,
-    headers=headers,
-)
-print(' Done.\n')
-
-#Could implement simultaneous conversations with multiple threads at some point,
-# depending on how this is planned to be deployed.
-# print('Response: ', response.json())
-threadId = response.json()['threadId']
-
-json_data = {
-    'threadId': threadId, #'11ef1c61-8795-5150-af65-e1c12ce1ce56',
-    'input': 'Hello! Please speak English to me. What are you about?',
-}
+    headers = {
+        'Content-Type': 'application/json',
+        'X-Workspace-API-Key': '11ee2f36-c329-7e80-9c79-ff4ddae14db0',
+    }
 
 
-# def avatar_response(speech_text):
-#     # print('Getting avatar response...')
+    #Create new conversation thread
+    print('\n Creating new conversation thread with Retune avatar...')
+    response = requests.get(
+        create_thread_url,
+        headers=headers,
+    )
+    print(' Done.\n')
 
-#     json_data['input'] = speech_text
-#     response = requests.post(
-#         generate_response_url,
-#         headers=headers,
-#         json=json_data,
-#     )
+    #Could implement simultaneous conversations with multiple threads at some point,
+    # depending on how this is planned to be deployed.
+    # print('Response: ', response.json())
+    threadId = response.json()['threadId']
 
-#     #Issue communicating with Retune, and obtaining avatar response
-#     if response.status_code != 200:
-#         avatar_response = "Retune Error." #In Portuguese? What would Danilo want?
-#     else:
-#         avatar_response = response.json()['response']['value']
-
-#     print('Avatar response: ', avatar_response)
-
-#     speak(avatar_response)
+    json_data = {
+        'threadId': threadId, #'11ef1c61-8795-5150-af65-e1c12ce1ce56',
+        'input': 'Hello! Please speak English to me. What are you about?',
+    }
 
 
-print('Done.\n')
+    print('Done.\n')
 
+init_retune()
+
+def avatar_response(speech_text):
+    # print('Getting avatar response...')
+    json_data['input'] = speech_text
+    response = requests.post(
+        generate_response_url,
+        headers=headers,
+        json=json_data,
+    )
+
+    #Issue communicating with Retune, and obtaining avatar response
+    if response.status_code != 200:
+        avatar_response = "Retune Error." #In Portuguese? What would Danilo want?
+    else:
+        avatar_response = response.json()['response']['value']
+
+    print('Avatar response: ', avatar_response)
+
+    speak(avatar_response)
 
 #Main loop. Listens for audio, transcribes it, passes it to Retune Avatar, 
 #converts Avatar output text to speech.
 
-print("Listening for speech...")
+# print("Listening for speech...")
 
 while True:
-    # The exception_on_overflow = False halps the code work on Mayowa's computer.
-    # data_np = np.frombuffer(stream.read(VAD_WINDOW_LENGTH, exception_on_overflow = False), dtype=np.float32)
-    data_np = np.frombuffer(stream.read(VAD_WINDOW_LENGTH), dtype=np.float32)
+    if on_mac == True:
+        data_np = np.frombuffer(stream.read(VAD_WINDOW_LENGTH, exception_on_overflow = False), dtype=np.float32)
+    else:
+        data_np = np.frombuffer(stream.read(VAD_WINDOW_LENGTH), dtype=np.float32)
     speech_dict = vad_iterator(data_np, return_seconds=True)
     if speech_dict:
         print('Speech dict: ', speech_dict)
@@ -242,37 +255,14 @@ while True:
         # start_time = time()
         speech_text = stt_engine.speech_to_text(speech_data, SAMPLING_RATE)
         # end_time = time()
-        print(f"Transcription: {speech_text}")
+        print('Transcription: ', speech_text)
         # print(f"Time taken: {end_time - start_time:.2f} seconds\n")
-
-        # print('Getting avatar response...')
-
-        json_data['input'] = speech_text
-        response = requests.post(
-            generate_response_url,
-            headers=headers,
-            json=json_data,
-        )
-
-        #Issue communicating with Retune, and obtaining avatar response
-        if response.status_code != 200:
-            avatar_response = "Retune Error." #In Portuguese? What would Danilo want?
-        else:
-            avatar_response = response.json()['response']['value']
-
-        print('Avatar response: ', avatar_response)
-
-        speak(avatar_response)
-
-        # avatar_response_thread = threading.Thread(target=avatar_response, args=(speech_text,))
-        # avatar_response_thread.start()
-        
         speech_data = np.array([])
         start_speech = False
         end_speech = False
 
+        # print('Getting avatar response...')
+        # speech_text = input('Enter input: ')
 
-
-
-
+        avatar_response(speech_text)
 
