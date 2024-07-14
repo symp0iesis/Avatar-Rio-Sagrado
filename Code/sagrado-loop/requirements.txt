@@ -6,11 +6,13 @@ torch
 PyAudio
 faster-whisper
 torchaudio
+nltk
 
 #TTS
 Soundfile
-TTS #Specific to TTS engine
+#TTS #Specific to TTS engine
 sounddevice
+pyrubberband
 
 #SQL
 PyMySQL 

@@ -1,4 +1,4 @@
-import os, threading, requests
+import os, threading, requests, sounddevice
 from time import time, sleep
 import numpy as np
 from numpy import array
@@ -20,7 +20,7 @@ def init_stt():
     global stream, VAD_WINDOW_LENGTH, vad_iterator, speech_data, start_speech, end_speech, stt_engine, SAMPLING_RATE
 
     SAMPLING_RATE = 16000
-    VAD_WINDOW_LENGTH = 1600
+    VAD_WINDOW_LENGTH = 512 #1600
     VAD_THRESHOLD = 0.4
     MIN_SILENCE_DURATION_MS = 500
     SPEECH_PAD_MS = 100

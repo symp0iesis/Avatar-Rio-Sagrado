@@ -1,11 +1,11 @@
 import torch
 from time import time
-import pyaudio
+import sounddevice, pyaudio
 import numpy as np
 from STTEngine.STTEngineFasterWhisper import STTEngine
 
 SAMPLING_RATE = 16000
-VAD_WINDOW_LENGTH = 1600
+VAD_WINDOW_LENGTH = 512 #1600
 VAD_THRESHOLD = 0.4
 MIN_SILENCE_DURATION_MS = 500
 SPEECH_PAD_MS = 100
