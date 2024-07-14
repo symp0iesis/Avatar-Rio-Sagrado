@@ -7,8 +7,8 @@ from numpy import array
 on_mac = True
 
 
-if on_mac == True:
-    os.environ['KMP_DUPLICATE_LIB_OK']='True'
+# if on_mac == True:
+#     os.environ['KMP_DUPLICATE_LIB_OK']='True'
 
 
 def init_stt():

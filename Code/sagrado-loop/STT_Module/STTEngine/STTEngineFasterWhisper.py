@@ -13,7 +13,7 @@ class STTEngine:
 
     def _initialize(self):
         self.model_size = "tiny"
-        self.model_stt = WhisperModel(self.model_size)
+        self.model_stt = WhisperModel(self.model_size, local_files_only=True)
         torch.set_grad_enabled(False)
         # torch.set_num_threads(4)
 
