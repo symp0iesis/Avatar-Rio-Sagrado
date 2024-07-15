@@ -48,10 +48,10 @@ init_stt()
 #Set up TTS
 from soundfile import write as sf_write
 from sounddevice import play, wait
-import nltk
-# print(' Downloading nltk punkt...')
-# nltk.download('punkt')
-# print(' Done.')
+import nltk.data
+print(' Loading nltk...')
+sentence_tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
+print(' Done.')
 
 def init_coqui_tts():
     print('Initializing Text-to-Speech...')
@@ -64,7 +64,7 @@ def init_coqui_tts():
 
 
     def split_text_into_sentences(text):
-        sentences = nltk.sent_tokenize(text)
+        sentences = sentence_tokenizer.tokenize(text)
         for i in range(len(sentences)):
             if sentences[i][-1] == '.':
                 sentences[i] = sentences[i][:-1]
@@ -88,7 +88,7 @@ def init_piper_tts():
 
 
     def split_text_into_sentences(text):
-        sentences = nltk.sent_tokenize(text)
+        sentences = sentence_tokenizer.tokenize(text)
         return sentences
 
     def bytes_to_sound(data):
