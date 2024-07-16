@@ -115,7 +115,7 @@ def init_piper_tts():
         print('---------\n Starting up Piper Server...')
         # import subprocess
         # subprocess.run("cat TTS_Module/piper-server-setup/piper_server.sh; sh TTS_Module/piper-server-setup/piper_server.sh -m pt_BR-faber-medium >> piper_server_output.txt 2>&1", shell=True) #&>> piper_server_output.txt
-        os.system("sh TTS_Module/piper-server-setup/piper_server.sh -m pt_BR-faber-medium >> piper_server_output.txt 2>&1") #&>> piper_server_output.txt
+        os.system("bash TTS_Module/piper-server-setup/piper_server.sh -m pt_BR-faber-medium >> piper_server_output.txt 2>&1") #&>> piper_server_output.txt
         print(' Done.\n---------')
 
     #Start Piper webserver in a thread

@@ -2,6 +2,9 @@
 
 apt install python3-venv rubberband-cli
 mkdir ~/piper_tts
+
+sudo chmod -R 777 ~/piper_tts/
+
 cd ~/piper_tts
 python3 -m venv .venv
 source .venv/bin/activate
