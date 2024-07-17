@@ -18,13 +18,13 @@ But who speaks on behalf of the river?
 
 Enters the AI-vatar, designed as a representation and manifestation of the river's history and the surrounding culture, via participatory processes with the local community. In concrete terms, it consisting of:
 
-    a physicial sculpture crafted by a native artisan to highlight the local fauna surrounding the river:
+- a physicial sculpture crafted by a native artisan to highlight the local fauna surrounding the river:
 
 ![image](https://github.com/user-attachments/assets/21978bee-396b-4fa1-a01f-af4bbb7affc2)
 
-    an AI interface to serve as a human understandable voice for the river. A prototype version has been designed with a standard LLM fine-tuned with over 20 scientific papers on river's watershed, as well as community accounts on the local culture. You can talk to via this link or via whatsapp with the number +55419663-8496:
+- an AI interface to serve as a human understandable voice for the river. A prototype version has been designed with a standard LLM fine-tuned with over 20 scientific papers on river's watershed, as well as community accounts on the local culture. You can talk to via this link or via whatsapp with the number +55419663-8496:
 
-    dedicated sensors for continuous scientific monitoring of the water's physicial properties and local fauna, flora and funga.
+- [dedicated sensors](https://www.youtube.com/watch?v=CcM0LKK8BUk&list=PLzO-TRQCGUUg0cWP9uQyv0_tD7z0tQxro) for continuous scientific monitoring of the water's physicial properties and local fauna, flora and funga.
 
 This stack is intended to serve as a representation for the river, especially in face of political negotiations concerning the actual river and its wellbeing. At the same time, it serves as an educative interface to anyone interested in learning about the river, the region and its communities.
 
