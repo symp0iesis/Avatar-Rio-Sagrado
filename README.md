@@ -1,6 +1,7 @@
 A prime example of the Nature's AI-vatars concept is the "Sacred River" AI-vatar, a digital/physical representation for the Rio Sagrado (Morretes-PR, Brazil), designed for educational and political purposes.
 
-[avatar_rio-sagrado_profile](https://s3.amazonaws.com/cloud.kumu.io/accounts/74382/879989/634eb524-692c-412c-90d3-247953c5598e.png)
+![image](https://github.com/user-attachments/assets/4248a216-2971-4e5c-951a-3d2f0dff8530)
+
 (V1.0):
 
 "Version 1.0" marks the initial phase of development (and public release), consisting of: an interactive LLM agent trained with 30+ articles/papers about the river - accessible through web interface and whatsapp; a physical sculpture created by a native artist to embody the avatar, highlighting local fauna; the community movement towards the cultural and legal recognition of the river as an entity with inherit rights; and a metaverse experience featuring the river and their AI-vatar.
@@ -19,7 +20,7 @@ Enters the AI-vatar, designed as a representation and manifestation of the river
 
     a physicial sculpture crafted by a native artisan to highlight the local fauna surrounding the river:
 
-[WhatsApp Image 2024-04-02 at 09 54 34 (3) copy](https://s3.amazonaws.com/cloud.kumu.io/accounts/74382/879989/0743920f-b44f-42a2-816b-dace9cc98aee.jpeg)
+![image](https://github.com/user-attachments/assets/21978bee-396b-4fa1-a01f-af4bbb7affc2)
 
     an AI interface to serve as a human understandable voice for the river. A prototype version has been designed with a standard LLM fine-tuned with over 20 scientific papers on river's watershed, as well as community accounts on the local culture. You can talk to via this link or via whatsapp with the number +55419663-8496:
 
