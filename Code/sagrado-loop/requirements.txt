@@ -9,6 +9,7 @@ torchaudio
 nltk
 
 #TTS
+onnxruntime==1.17.1
 Soundfile
 #TTS #Specific to TTS engine
 sounddevice
