@@ -301,14 +301,15 @@ while True:
         speech_data = np.append(speech_data, data_np)
         speech_text = stt_engine.speech_to_text(speech_data, SAMPLING_RATE)
 
-        print('Transcription: ', speech_text)
-        if ('água' in speech_text.lower() or 'agua' in speech_text.lower()) and (avatar_mode=='inactive'):
-            avatar_mode = 'active'
-            print('Avatar activated')
-
         speech_data = np.array([])
         start_speech = False
         end_speech = False
+
+        print('Transcription: ', speech_text)
+        if (avatar_mode=='inactive') and ('água' in speech_text.lower() or 'agua' in speech_text.lower()):
+            avatar_mode = 'active'
+            print('Avatar activated')
+            continue
 
         # print('Getting avatar response...')
         # speech_text = input('Enter input: ')
