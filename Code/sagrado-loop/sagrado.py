@@ -315,6 +315,6 @@ while True:
         # speech_text = input('Enter input: ')
 
         if avatar_mode == 'active':
-            print('Transcription: ', speech_text)
+            # print('Transcription: ', speech_text)
             avatar_response(speech_text)
 
