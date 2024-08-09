@@ -279,7 +279,7 @@ def avatar_response(speech_text):
 
 avatar_mode = 'inactive'
 
-time.sleep(3)
+time.sleep(2.5)
 
 while True:
     if on_mac == True:
@@ -302,7 +302,7 @@ while True:
         speech_text = stt_engine.speech_to_text(speech_data, SAMPLING_RATE)
 
         print('Transcription: ', speech_text)
-        if ('Água' in speech_text.lower() or 'Agua' in speech_text.lower()) and (avatar_mode=='inactive'):
+        if ('Água' in speech_text or 'Agua' in speech_text) and (avatar_mode=='inactive'):
             avatar_mode = 'active'
             print('Avatar activated')
 
