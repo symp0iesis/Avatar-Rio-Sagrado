@@ -1,5 +1,4 @@
-import os, threading, requests, sounddevice
-from time import time, sleep
+import time, os, threading, requests, sounddevice
 import numpy as np
 from numpy import array
 import traceback
