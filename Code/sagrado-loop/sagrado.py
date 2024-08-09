@@ -106,9 +106,9 @@ def init_piper_tts():
         # sentences = nltk.sent_tokenize(text)
         return sentences
 
-    def bytes_to_sound(data):
-        sound_data = np.frombuffer(data, dtype=np.int16, count=len(data) // 2).astype(np.float64) / 32768.0
-        return sound_data
+    # def bytes_to_sound(data):
+    #     sound_data = np.frombuffer(data, dtype=np.int16, count=len(data) // 2).astype(np.float64) / 32768.0
+    #     return sound_data
 
     def text_to_speech(text):
         try:
@@ -278,6 +278,8 @@ def avatar_response(speech_text):
 
 # print("Listening for speech...")
 
+avatar_mode = 'inactive'
+
 while True:
     if on_mac == True:
         data_np = np.frombuffer(stream.read(VAD_WINDOW_LENGTH, exception_on_overflow = False), dtype=np.float32)
@@ -296,11 +298,10 @@ while True:
         speech_data = np.append(speech_data, data_np)        
     elif end_speech and not start_speech:
         speech_data = np.append(speech_data, data_np)
-        # start_time = time()
         speech_text = stt_engine.speech_to_text(speech_data, SAMPLING_RATE)
-        # end_time = time()
-        print('Transcription: ', speech_text)
-        # print(f"Time taken: {end_time - start_time:.2f} seconds\n")
+
+        if 'oi avatar' in speech_text.lower():
+            avatar_mode = 'active'
         speech_data = np.array([])
         start_speech = False
         end_speech = False
@@ -308,5 +309,7 @@ while True:
         # print('Getting avatar response...')
         # speech_text = input('Enter input: ')
 
-        avatar_response(speech_text)
+        if avatar_mode == 'active':
+            print('Transcription: ', speech_text)
+            avatar_response(speech_text)
 
