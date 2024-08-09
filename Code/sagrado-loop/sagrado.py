@@ -2,6 +2,7 @@ import os, threading, requests, sounddevice
 from time import time, sleep
 import numpy as np
 from numpy import array
+import traceback
 
 #To toggle modifications needed to make code work on Mayowa's computer
 on_mac = True
@@ -112,7 +113,7 @@ def init_piper_tts():
     def text_to_speech(text):
         try:
             #Do this every time, or add generated audio to a pre-existing stream?
-            stream = sd.OutputStream(samplerate=model.config.sample_rate, channels=1, dtype='int16')
+            stream = sd.OutputStream(samplerate=voice.config.sample_rate, channels=1, dtype='int16')
             stream.start()
             sentences = split_text_into_sentences(text)
             for sentence in sentences:
@@ -121,7 +122,7 @@ def init_piper_tts():
                     stream.write(int_data)
             stream.stop()
             stream.close()
-            
+
         except Exception as e:
             print("Error generating speech from text: ", Exception,  e)
             print(traceback.format_exc())
