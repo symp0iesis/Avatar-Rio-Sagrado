@@ -121,8 +121,10 @@ def init_piper_tts():
                     stream.write(int_data)
             stream.stop()
             stream.close()
-        except:
-            print("Error generating speech from text")
+            
+        except Exception as e:
+            print("Error generating speech from text: ", Exception,  e)
+            print(traceback.format_exc())
             # return None
 
         #Write to file? In a thread?
