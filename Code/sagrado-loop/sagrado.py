@@ -47,6 +47,7 @@ init_stt()
 
 #Set up TTS
 from soundfile import write as sf_write
+import sounddevice as sd
 from sounddevice import play, wait
 import nltk.data
 print(' Loading nltk tokenizer...')
@@ -83,12 +84,21 @@ def init_coqui_tts():
 
 def init_piper_tts(): 
     print('Initializing Text-to-Speech...')
-    import pyrubberband
+    # import pyrubberband, io, wave
+    from piper import PiperVoice
     global split_text_into_sentences, text_to_speech
     HEADER_SIZE = 44
     SAMPLE_RATE = 21000
     SPEECH_SPEED = 0.835
 
+    synthesize_args = {
+        "speaker_id": None,
+        "length_scale": None,
+        "noise_scale": None,
+        "noise_w": None,
+        "sentence_silence": 0.5,
+        }
+    voice = PiperVoice.load('/home/avatar-rio-sagrado/piper_tts/pt_BR-faber-medium.onnx', '/home/avatar-rio-sagrado/piper_tts/pt_BR-faber-medium.onnx.json')
 
     def split_text_into_sentences(text):
         sentences = sentence_tokenizer.tokenize(text)
@@ -100,27 +110,54 @@ def init_piper_tts():
         return sound_data
 
     def text_to_speech(text):
-        URL = "http://localhost:5000"
-        resp = requests.get(URL, params={'text': text})
-        if resp.status_code == 200:
-            wav_data = bytes_to_sound(resp.content[HEADER_SIZE:])
-            if wav_data is not None:
-                slowed_wav_data = pyrubberband.time_stretch(wav_data, SAMPLE_RATE, SPEECH_SPEED)
-                return slowed_wav_data
-            else:
-                raise Exception("Failed to convert text to speech")
-        return None
+        try:
+            #Do this every time, or add generated audio to a pre-existing stream?
+            stream = sd.OutputStream(samplerate=model.config.sample_rate, channels=1, dtype='int16')
+            stream.start()
+            sentences = split_text_into_sentences(text)
+            for sentence in sentences:
+                for audio_bytes in voice.synthesize_stream_raw(sentence):
+                    int_data = np.frombuffer(audio_bytes, dtype=np.int16)
+                    stream.write(int_data)
+            stream.stop()
+            stream.close()
+        except:
+            print("Error generating speech from text")
+            # return None
 
-    def startup_piper_server():
-        print('---------\n Starting up Piper Server...')
-        # import subprocess
-        # subprocess.run("cat TTS_Module/piper-server-setup/piper_server.sh; sh TTS_Module/piper-server-setup/piper_server.sh -m pt_BR-faber-medium >> piper_server_output.txt 2>&1", shell=True) #&>> piper_server_output.txt
-        os.system("bash TTS_Module/piper-server-setup/piper_server.sh -m pt_BR-faber-medium >> piper_server_output.txt 2>&1") #&>> piper_server_output.txt
-        print(' Done.\n---------')
+        #Write to file? In a thread?
+        # print('Writing audio to file...')
+        # sf_write("output.wav", array(file_data), 24000)
+
+
+
+        # wav_file = wave.open("output.wav", "w")
+        # audio = voice.synthesize(text, wav_file)
+        # wave_io = io.BytesIO()
+        # with wave.open(wave_io, "wb") as wav_file:
+        #     model.synthesize("This is a test. This is a Test.", wav_file, **synthesize_args)
+
+        # URL = "http://localhost:5000"
+        # resp = requests.get(URL, params={'text': text})
+        # if resp.status_code == 200:
+        #     wav_data = bytes_to_sound(resp.content[HEADER_SIZE:])
+        #     if wav_data is not None:
+        #         slowed_wav_data = pyrubberband.time_stretch(wav_data, SAMPLE_RATE, SPEECH_SPEED)
+        #         return slowed_wav_data
+        #     else:
+        #         raise Exception("Failed to convert text to speech")
+        # return None
+
+    # def startup_piper_server():
+    #     print('---------\n Starting up Piper Server...')
+    #     # import subprocess
+    #     # subprocess.run("cat TTS_Module/piper-server-setup/piper_server.sh; sh TTS_Module/piper-server-setup/piper_server.sh -m pt_BR-faber-medium >> piper_server_output.txt 2>&1", shell=True) #&>> piper_server_output.txt
+    #     os.system("bash TTS_Module/piper-server-setup/piper_server.sh -m pt_BR-faber-medium >> piper_server_output.txt 2>&1") #&>> piper_server_output.txt
+    #     print(' Done.\n---------')
 
     #Start Piper webserver in a thread
-    piper_thread = threading.Thread(target=startup_piper_server)
-    piper_thread.start()
+    # piper_thread = threading.Thread(target=startup_piper_server)
+    # piper_thread.start()
 
 
 
@@ -128,42 +165,42 @@ def init_piper_tts():
 # init_coqui_tts()
 init_piper_tts()
 
-def play_audio():
-    print('play_audio() called')
-    global audio_queue
-    while True:
-        sleep(0.3)
-        if len(audio_queue) > 0:
-            wav_data = audio_queue.pop(0)
-            # print('Playing generated audio..', type(wav_data))
-            play(array(wav_data), 24000)
-            wait()
+# def play_audio():
+#     print('play_audio() called')
+#     global audio_queue
+#     while True:
+#         sleep(0.3)
+#         if len(audio_queue) > 0:
+#             wav_data = audio_queue.pop(0)
+#             # print('Playing generated audio..', type(wav_data))
+#             play(array(wav_data), 24000)
+#             wait()
 
 
 
-# Global audio queue to store the audio data
-audio_queue = []
-file_data = []
+# # Global audio queue to store the audio data
+# audio_queue = []
+# file_data = []
 
-# Start the audio playback thread
-audio_thread = threading.Thread(target=play_audio)
-# audio_thread.daemon = True
-audio_thread.start()
+# # Start the audio playback thread
+# audio_thread = threading.Thread(target=play_audio)
+# # audio_thread.daemon = True
+# audio_thread.start()
 
 
-def speak(input_text):
-    sentences = split_text_into_sentences(input_text)
-    for sentence in sentences:
-        wav_data = text_to_speech(sentence)
-        if wav_data is None:
-            raise Exception("Piper Server Error: Error generating speech from Piper TTS.")
-        # print('Generated audio data')
-        audio_queue.append(wav_data)
-        file_data.extend(wav_data)
+# def speak(input_text):
+#     sentences = split_text_into_sentences(input_text)
+#     for sentence in sentences:
+#         wav_data = text_to_speech(sentence)
+#         if wav_data is None:
+#             raise Exception("Piper Server Error: Error generating speech from Piper TTS.")
+#         # print('Generated audio data')
+        # audio_queue.append(wav_data)
+        # file_data.extend(wav_data)
         # print('Audio array length: ', len(audio_queue))
 
-    print('Writing audio to file...')
-    sf_write("output.wav", array(file_data), 24000)
+    # print('Writing audio to file...')
+    # sf_write("output.wav", array(file_data), 24000)
     # os.remove("output.wav")
 
 
@@ -231,7 +268,7 @@ def avatar_response(speech_text):
 
     print('Avatar response: ', avatar_response)
 
-    speak(avatar_response)
+    text_to_speech(avatar_response)
 
 #Main loop. Listens for audio, transcribes it, passes it to Retune Avatar, 
 #converts Avatar output text to speech.
