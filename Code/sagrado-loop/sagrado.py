@@ -287,7 +287,7 @@ while True:
         data_np = np.frombuffer(stream.read(VAD_WINDOW_LENGTH), dtype=np.float32)
     speech_dict = vad_iterator(data_np, return_seconds=True)
     if speech_dict:
-        print('Speech dict: ', speech_dict)
+        # print('Speech dict: ', speech_dict)
         if 'start' in speech_dict:
             start_speech = True
             end_speech = False
@@ -300,8 +300,10 @@ while True:
         speech_data = np.append(speech_data, data_np)
         speech_text = stt_engine.speech_to_text(speech_data, SAMPLING_RATE)
 
+        print('Transcription: ', speech_text)
         if 'oi avatar' in speech_text.lower():
             avatar_mode = 'active'
+            
         speech_data = np.array([])
         start_speech = False
         end_speech = False
