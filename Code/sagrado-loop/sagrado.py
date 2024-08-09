@@ -302,7 +302,7 @@ while True:
         speech_text = stt_engine.speech_to_text(speech_data, SAMPLING_RATE)
 
         print('Transcription: ', speech_text)
-        if ('Água' in speech_text or 'Agua' in speech_text) and (avatar_mode=='inactive'):
+        if ('água' in speech_text.lower() or 'agua' in speech_text.lower()) and (avatar_mode=='inactive'):
             avatar_mode = 'active'
             print('Avatar activated')
 
