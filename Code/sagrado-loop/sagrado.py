@@ -280,6 +280,8 @@ def avatar_response(speech_text):
 
 avatar_mode = 'inactive'
 
+time.sleep(3)
+
 while True:
     if on_mac == True:
         data_np = np.frombuffer(stream.read(VAD_WINDOW_LENGTH, exception_on_overflow = False), dtype=np.float32)
@@ -301,9 +303,10 @@ while True:
         speech_text = stt_engine.speech_to_text(speech_data, SAMPLING_RATE)
 
         print('Transcription: ', speech_text)
-        if 'oi avatar' in speech_text.lower():
+        if ('Água' in speech_text.lower() or 'Agua' in speech_text.lower()) and (avatar_mode=='inactive'):
             avatar_mode = 'active'
-            
+            print('Avatar activated')
+
         speech_data = np.array([])
         start_speech = False
         end_speech = False
