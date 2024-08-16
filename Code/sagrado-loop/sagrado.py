@@ -197,10 +197,10 @@ def avatar_response(speech_text):
 
 # print("Listening for speech...")
 
-avatar_mode = 'inactive'
+# avatar_mode = 'inactive'
 listening=False
 
-time.sleep(2.5)
+# time.sleep(2.5)
 
 
 def listen():
