@@ -207,7 +207,7 @@ def listen():
     global speech_data
     speech_data = np.array([])
     while listening == True:
-        data_np = np.frombuffer(stream.read(CHUNK, dtype=np.float32))
+        data_np = np.frombuffer(stream.read(CHUNK), dtype=np.float32)
         speech_data = np.append(speech_data, data_np)  
         # speech_data.append(data)
     print('Listening stopped.')
