@@ -205,10 +205,11 @@ time.sleep(2.5)
 
 def listen():
     global speech_data
-    speech_data = []
+    speech_data = np.array([])
     while listening == True:
-        data = stream.read(CHUNK)
-        speech_data.append(data)
+        data_np = np.frombuffer(stream.read(CHUNK))
+        speech_data = np.append(speech_data, data_np)  
+        # speech_data.append(data)
     print('Listening stopped.')
 
 
@@ -232,6 +233,7 @@ while True:
     listener_thread.start()
     x = input('Press any key to stop listening...')
     listening=False
+    print('Speech data: ', len(speech_data), speech_data[0].shape)
     respond(speech_data)
 
 
