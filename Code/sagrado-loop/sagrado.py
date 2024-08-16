@@ -204,13 +204,14 @@ listening=False
 
 
 def listen():
+    listening = True
     global speech_data
     speech_data = np.array([])
     while listening == True:
         data_np = np.frombuffer(stream.read(CHUNK), dtype=np.float32)
         speech_data = np.append(speech_data, data_np)  
         # speech_data.append(data)
-    print('Listening stopped.')
+    print('Listening stopped. Avatar listening: ', listening)
 
 
 def respond(speech_data):
@@ -229,7 +230,6 @@ def respond(speech_data):
 
 while True:
     x = input('Press "Enter" key to listen...')
-    listening = True
     listener_thread = threading.Thread(target=listen)
     listener_thread.start()
     x = input('Press "Enter" key to stop listening...')
