@@ -214,16 +214,17 @@ def listen():
 
 
 def respond(speech_data):
+    print('Transcribing audio...')
     speech_text = stt_engine.speech_to_text(speech_data, SAMPLING_RATE)
 
     print('Transcription: ', speech_text)
-    if avatar_mode == 'active':
+    # if avatar_mode == 'active':
         # print('Transcription: ', speech_text)
-        avatar_response(speech_text)
+    avatar_response(speech_text)
     
-    if (avatar_mode=='inactive') and ('água' in speech_text.lower() or 'agua' in speech_text.lower()):
-        avatar_mode = 'active'
-        print('Avatar activated')
+    # if (avatar_mode=='inactive') and ('água' in speech_text.lower() or 'agua' in speech_text.lower()):
+    #     avatar_mode = 'active'
+    #     print('Avatar activated')
         
 
 while True:
