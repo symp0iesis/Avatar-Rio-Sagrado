@@ -229,7 +229,7 @@ while True:
     x = input('Press any key to listen...')
     listening = True
     listener_thread = threading.Thread(target=listen)
-    piper_thread.start()
+    listener_thread.start()
     x = input('Press any key to stop listening...')
     listening=False
     respond(speech_data)
