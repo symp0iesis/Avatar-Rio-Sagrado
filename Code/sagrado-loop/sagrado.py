@@ -234,7 +234,7 @@ while True:
     listener_thread.start()
     x = input('Press any key to stop listening...')
     listening=False
-    print('Speech data: ', len(speech_data), speech_data[0].shape)
+    print('Speech data: ', len(speech_data), speech_data.shape)
     respond(speech_data)
 
 
