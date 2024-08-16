@@ -17,7 +17,7 @@ def init_stt():
     import torch
     import pyaudio
     from STT_Module.STTEngine.STTEngineFasterWhisper import STTEngine
-    global stream, stt_engine, speech_data, CHUNK, SAMPLING_RATE, VAD_WINDOW_LENGTH
+    global pyaudio_instance, stt_engine, speech_data, CHUNK, SAMPLING_RATE, VAD_WINDOW_LENGTH
 
     speech_data = []
     SAMPLING_RATE = 16000
@@ -36,8 +36,7 @@ def init_stt():
     # vad_iterator = VADIterator(model_vad, threshold=VAD_THRESHOLD, min_silence_duration_ms=MIN_SILENCE_DURATION_MS, speech_pad_ms=SPEECH_PAD_MS)
 
     # initialize listening device
-    p = pyaudio.PyAudio()
-    stream = p.open(format=pyaudio.paFloat32, channels=1, rate=SAMPLING_RATE, input=True, frames_per_buffer=CHUNK)
+    pyaudio_instance = pyaudio.PyAudio()
 
     print('Done.\n')
 
@@ -206,10 +205,12 @@ listening=False
 def listen():
     global speech_data
     speech_data = np.array([])
+    stream = pyaudio_instance.open(format=pyaudio.paFloat32, channels=1, rate=SAMPLING_RATE, input=True, frames_per_buffer=CHUNK)
     while listening == True:
         data_np = np.frombuffer(stream.read(CHUNK), dtype=np.float32)
         speech_data = np.append(speech_data, data_np)  
         # speech_data.append(data)
+    stream.close()
     print('Listening stopped. Avatar listening: ', listening)
 
 
