@@ -228,7 +228,7 @@ def respond(speech_data):
         
 
 while True:
-    x = input('Press "Enter" key to listen...')
+    x = input('\nPress "Enter" key to listen...')
     listener_thread = threading.Thread(target=listen)
     listening = True
     listener_thread.start()
