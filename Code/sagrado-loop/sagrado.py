@@ -1,4 +1,4 @@
-import time, os, threading, requests, sounddevice
+import time, os, threading, requests, sounddevice, pyaudio
 import numpy as np
 from numpy import array
 import traceback
@@ -15,7 +15,6 @@ def init_stt():
     print('Initializing Speech-to-Text...')
     #Set up STT
     import torch
-    import pyaudio
     from STT_Module.STTEngine.STTEngineFasterWhisper import STTEngine
     global pyaudio_instance, stt_engine, speech_data, CHUNK, SAMPLING_RATE, VAD_WINDOW_LENGTH
 
