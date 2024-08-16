@@ -37,7 +37,7 @@ def init_stt():
 
     # initialize listening device
     p = pyaudio.PyAudio()
-    stream = p.open(format=pyaudio.paFloat32, channels=1, rate=SAMPLING_RATE, input=True, frames_per_buffer=VAD_WINDOW_LENGTH)
+    stream = p.open(format=pyaudio.paFloat32, channels=1, rate=SAMPLING_RATE, input=True, frames_per_buffer=CHUNK)
 
     print('Done.\n')
 
@@ -204,7 +204,6 @@ listening=False
 
 
 def listen():
-    listening = True
     global speech_data
     speech_data = np.array([])
     while listening == True:
@@ -231,6 +230,7 @@ def respond(speech_data):
 while True:
     x = input('Press "Enter" key to listen...')
     listener_thread = threading.Thread(target=listen)
+    listening = True
     listener_thread.start()
     x = input('Press "Enter" key to stop listening...')
     listening=False
