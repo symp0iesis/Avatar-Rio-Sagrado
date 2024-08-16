@@ -4,7 +4,7 @@ from numpy import array
 import traceback
 
 #To toggle modifications needed to make code work on Mayowa's computer
-on_mac = True
+# on_mac = True
 
 
 # if on_mac == True:
@@ -17,28 +17,27 @@ def init_stt():
     import torch
     import pyaudio
     from STT_Module.STTEngine.STTEngineFasterWhisper import STTEngine
-    global stream, VAD_WINDOW_LENGTH, vad_iterator, speech_data, start_speech, end_speech, stt_engine, SAMPLING_RATE
+    global stream, stt_engine, speech_data, CHUNK, SAMPLING_RATE, VAD_WINDOW_LENGTH
 
+    speech_data = []
     SAMPLING_RATE = 16000
     VAD_WINDOW_LENGTH = 512 #1600
-    VAD_THRESHOLD = 0.4
-    MIN_SILENCE_DURATION_MS = 500
-    SPEECH_PAD_MS = 100
+    # VAD_THRESHOLD = 0.4
+    # MIN_SILENCE_DURATION_MS = 500
+    # SPEECH_PAD_MS = 100
+    CHUNK = 1024
 
     # load model and processor for speech-to-text
     stt_engine = STTEngine()
 
     # load model and utils for voice activity detection
-    model_vad, utils_vad = torch.hub.load(repo_or_dir='snakers4/silero-vad', model='silero_vad', onnx=False)
-    (_, _, _, VADIterator, _) = utils_vad
-    vad_iterator = VADIterator(model_vad, threshold=VAD_THRESHOLD, min_silence_duration_ms=MIN_SILENCE_DURATION_MS, speech_pad_ms=SPEECH_PAD_MS)
+    # model_vad, utils_vad = torch.hub.load(repo_or_dir='snakers4/silero-vad', model='silero_vad', onnx=False)
+    # (_, _, _, VADIterator, _) = utils_vad
+    # vad_iterator = VADIterator(model_vad, threshold=VAD_THRESHOLD, min_silence_duration_ms=MIN_SILENCE_DURATION_MS, speech_pad_ms=SPEECH_PAD_MS)
 
     # initialize listening device
     p = pyaudio.PyAudio()
     stream = p.open(format=pyaudio.paFloat32, channels=1, rate=SAMPLING_RATE, input=True, frames_per_buffer=VAD_WINDOW_LENGTH)
-    speech_data = np.array([])
-    start_speech = False
-    end_speech = False
 
     print('Done.\n')
 
@@ -84,7 +83,6 @@ def init_coqui_tts():
 
 def init_piper_tts(): 
     print('Initializing Text-to-Speech...')
-    # import pyrubberband, io, wave
     from piper import PiperVoice
     global split_text_into_sentences, text_to_speech
     HEADER_SIZE = 44
@@ -105,10 +103,6 @@ def init_piper_tts():
         # sentences = nltk.sent_tokenize(text)
         return sentences
 
-    # def bytes_to_sound(data):
-    #     sound_data = np.frombuffer(data, dtype=np.int16, count=len(data) // 2).astype(np.float64) / 32768.0
-    #     return sound_data
-
     def text_to_speech(text):
         try:
             #Do this every time, or add generated audio to a pre-existing stream?
@@ -125,85 +119,11 @@ def init_piper_tts():
         except Exception as e:
             print("Error generating speech from text: ", Exception,  e)
             print(traceback.format_exc())
-            # return None
-
-        #Write to file? In a thread?
-        # print('Writing audio to file...')
-        # sf_write("output.wav", array(file_data), 24000)
-
-
-
-        # wav_file = wave.open("output.wav", "w")
-        # audio = voice.synthesize(text, wav_file)
-        # wave_io = io.BytesIO()
-        # with wave.open(wave_io, "wb") as wav_file:
-        #     model.synthesize("This is a test. This is a Test.", wav_file, **synthesize_args)
-
-        # URL = "http://localhost:5000"
-        # resp = requests.get(URL, params={'text': text})
-        # if resp.status_code == 200:
-        #     wav_data = bytes_to_sound(resp.content[HEADER_SIZE:])
-        #     if wav_data is not None:
-        #         slowed_wav_data = pyrubberband.time_stretch(wav_data, SAMPLE_RATE, SPEECH_SPEED)
-        #         return slowed_wav_data
-        #     else:
-        #         raise Exception("Failed to convert text to speech")
-        # return None
-
-    # def startup_piper_server():
-    #     print('---------\n Starting up Piper Server...')
-    #     # import subprocess
-    #     # subprocess.run("cat TTS_Module/piper-server-setup/piper_server.sh; sh TTS_Module/piper-server-setup/piper_server.sh -m pt_BR-faber-medium >> piper_server_output.txt 2>&1", shell=True) #&>> piper_server_output.txt
-    #     os.system("bash TTS_Module/piper-server-setup/piper_server.sh -m pt_BR-faber-medium >> piper_server_output.txt 2>&1") #&>> piper_server_output.txt
-    #     print(' Done.\n---------')
-
-    #Start Piper webserver in a thread
-    # piper_thread = threading.Thread(target=startup_piper_server)
-    # piper_thread.start()
-
 
 
 # Select TTS Backend to Use:
 # init_coqui_tts()
 init_piper_tts()
-
-# def play_audio():
-#     print('play_audio() called')
-#     global audio_queue
-#     while True:
-#         sleep(0.3)
-#         if len(audio_queue) > 0:
-#             wav_data = audio_queue.pop(0)
-#             # print('Playing generated audio..', type(wav_data))
-#             play(array(wav_data), 24000)
-#             wait()
-
-
-
-# # Global audio queue to store the audio data
-# audio_queue = []
-# file_data = []
-
-# # Start the audio playback thread
-# audio_thread = threading.Thread(target=play_audio)
-# # audio_thread.daemon = True
-# audio_thread.start()
-
-
-# def speak(input_text):
-#     sentences = split_text_into_sentences(input_text)
-#     for sentence in sentences:
-#         wav_data = text_to_speech(sentence)
-#         if wav_data is None:
-#             raise Exception("Piper Server Error: Error generating speech from Piper TTS.")
-#         # print('Generated audio data')
-        # audio_queue.append(wav_data)
-        # file_data.extend(wav_data)
-        # print('Audio array length: ', len(audio_queue))
-
-    # print('Writing audio to file...')
-    # sf_write("output.wav", array(file_data), 24000)
-    # os.remove("output.wav")
 
 
 print('Done.\n')
@@ -278,43 +198,74 @@ def avatar_response(speech_text):
 # print("Listening for speech...")
 
 avatar_mode = 'inactive'
+listening=False
 
 time.sleep(2.5)
 
+
+def listen():
+    global speech_data
+    speech_data = []
+    while listening == True:
+        data = stream.read(CHUNK)
+        speech_data.append(data)
+    print('Listening stopped.')
+
+
+def respond(speech_data):
+    speech_text = stt_engine.speech_to_text(speech_data, SAMPLING_RATE)
+
+    print('Transcription: ', speech_text)
+    if avatar_mode == 'active':
+        # print('Transcription: ', speech_text)
+        avatar_response(speech_text)
+    
+    if (avatar_mode=='inactive') and ('água' in speech_text.lower() or 'agua' in speech_text.lower()):
+        avatar_mode = 'active'
+        print('Avatar activated')
+        
+
 while True:
-    if on_mac == True:
-        data_np = np.frombuffer(stream.read(VAD_WINDOW_LENGTH, exception_on_overflow = False), dtype=np.float32)
-    else:
-        data_np = np.frombuffer(stream.read(VAD_WINDOW_LENGTH), dtype=np.float32)
-    speech_dict = vad_iterator(data_np, return_seconds=True)
-    if speech_dict:
-        # print('Speech dict: ', speech_dict)
-        if 'start' in speech_dict:
-            start_speech = True
-            end_speech = False
-        elif 'end' in speech_dict:
-            end_speech = True
-            start_speech = False
-    if start_speech and not end_speech:
-        speech_data = np.append(speech_data, data_np)        
-    elif end_speech and not start_speech:
-        speech_data = np.append(speech_data, data_np)
-        speech_text = stt_engine.speech_to_text(speech_data, SAMPLING_RATE)
+    x = input('Press any key to listen...')
+    listening = True
+    listener_thread = threading.Thread(target=listen)
+    piper_thread.start()
+    x = input('Press any key to stop listening...')
+    listening=False
+    respond(speech_data)
 
-        speech_data = np.array([])
-        start_speech = False
-        end_speech = False
 
-        print('Transcription: ', speech_text)
-        if (avatar_mode=='inactive') and ('água' in speech_text.lower() or 'agua' in speech_text.lower()):
-            avatar_mode = 'active'
-            print('Avatar activated')
-            continue
+# while True:
+#     data_np = np.frombuffer(stream.read(VAD_WINDOW_LENGTH), dtype=np.float32)
+#     speech_dict = vad_iterator(data_np, return_seconds=True)
+#     if speech_dict:
+#         # print('Speech dict: ', speech_dict)
+#         if 'start' in speech_dict:
+#             start_speech = True
+#             end_speech = False
+#         elif 'end' in speech_dict:
+#             end_speech = True
+#             start_speech = False
+#     if start_speech and not end_speech:
+#         speech_data = np.append(speech_data, data_np)        
+#     elif end_speech and not start_speech:
+#         speech_data = np.append(speech_data, data_np)
+#         speech_text = stt_engine.speech_to_text(speech_data, SAMPLING_RATE)
 
-        # print('Getting avatar response...')
-        # speech_text = input('Enter input: ')
+#         speech_data = np.array([])
+#         start_speech = False
+#         end_speech = False
 
-        if avatar_mode == 'active':
-            # print('Transcription: ', speech_text)
-            avatar_response(speech_text)
+#         print('Transcription: ', speech_text)
+#         if (avatar_mode=='inactive') and ('água' in speech_text.lower() or 'agua' in speech_text.lower()):
+#             avatar_mode = 'active'
+#             print('Avatar activated')
+#             continue
+
+#         # print('Getting avatar response...')
+#         # speech_text = input('Enter input: ')
+
+#         if avatar_mode == 'active':
+#             # print('Transcription: ', speech_text)
+#             avatar_response(speech_text)
 
