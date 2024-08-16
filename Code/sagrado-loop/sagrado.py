@@ -228,11 +228,11 @@ def respond(speech_data):
         
 
 while True:
-    x = input('Press any key to listen...')
+    x = input('Press "Enter" key to listen...')
     listening = True
     listener_thread = threading.Thread(target=listen)
     listener_thread.start()
-    x = input('Press any key to stop listening...')
+    x = input('Press "Enter" key to stop listening...')
     listening=False
     print('Speech data: ', len(speech_data), speech_data.shape)
     respond(speech_data)
