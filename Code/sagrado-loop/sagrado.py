@@ -226,7 +226,11 @@ def listen():
 def play_river_sound():
     print('Playing river sound...')
     river_sound = wave.open('sagrado_audio.wav', 'rb')
-    stream = sd.OutputStream(samplerate=SAMPLE_RATE, channels=1, dtype='int16')
+    stream = pyaudio_instance.open(format =
+                pyaudio_instance.get_format_from_width(river_sound.getsampwidth()),
+                channels = river_sound.getnchannels(),
+                rate = river_sound.getframerate(),
+                output = True)
     stream.start()
     while speaking==False:
         data = river_sound.readframes(CHUNK)
