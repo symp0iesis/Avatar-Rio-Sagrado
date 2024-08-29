@@ -232,7 +232,7 @@ def play_river_sound():
                 rate = river_sound.getframerate(),
                 output = True)
     # stream.start()
-    while speaking==False:
+    while speaking==False and listening==False:
         data = river_sound.readframes(CHUNK)
         if not data:
             river_sound = wave.open('sagrado_audio.wav', 'rb')
@@ -252,11 +252,13 @@ def respond(speech_data):
     avatar_response(speech_text)
     
         
+river_sound_thread = threading.Thread(target=play_river_sound)
+river_sound_thread.start()
 
 while True:
     x = input('\nPress "Enter" key to listen...')
-    listener_thread = threading.Thread(target=listen)
     listening = True
+    listener_thread = threading.Thread(target=listen)
     listener_thread.start()
 
     x = input('Press "Enter" key to stop listening...')
