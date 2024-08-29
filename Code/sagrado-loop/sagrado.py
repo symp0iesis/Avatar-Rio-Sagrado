@@ -82,7 +82,7 @@ def init_coqui_tts():
 def init_piper_tts(): 
     print('Initializing Text-to-Speech...')
     from piper import PiperVoice
-    global split_text_into_sentences, text_to_speech
+    global split_text_into_sentences, text_to_speech, SAMPLE_RATE
     HEADER_SIZE = 44
     SAMPLE_RATE = 21000
     SPEECH_SPEED = 0.835
@@ -226,7 +226,7 @@ def listen():
 def play_river_sound():
     print('Playing river sound...')
     river_sound = wave.open('sagrado_audio.wav', 'rb')
-    stream = sd.OutputStream(samplerate=voice.config.sample_rate, channels=1, dtype='int16')
+    stream = sd.OutputStream(samplerate=SAMPLE_RATE, channels=1, dtype='int16')
     stream.start()
     while speaking==False:
         data = river_sound.readframes(CHUNK)
