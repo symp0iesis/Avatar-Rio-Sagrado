@@ -259,6 +259,7 @@ while True:
     print('Speech data: ', len(speech_data), speech_data.shape)
 
     river_sound_thread = threading.Thread(target=play_river_sound)
+    river_sound_thread.start()
     respond(speech_data)
 
 
