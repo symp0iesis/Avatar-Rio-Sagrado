@@ -268,6 +268,7 @@ while True:
     river_sound_thread = threading.Thread(target=play_river_sound)
     river_sound_thread.start()
     respond(speech_data)
+    river_sound_thread.start()
 
 
 # while True:
