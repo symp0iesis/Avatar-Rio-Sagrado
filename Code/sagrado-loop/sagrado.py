@@ -232,7 +232,7 @@ def play_river_sound():
                 rate = river_sound.getframerate(),
                 output = True)
     # stream.start()
-    while speaking==False and listening==False:
+    while True: #speaking==False and listening==False:
         data = river_sound.readframes(CHUNK)
         if not data:
             river_sound = wave.open('sagrado_audio.wav', 'rb')
@@ -265,10 +265,11 @@ while True:
     listening=False
     print('Speech data: ', len(speech_data), speech_data.shape)
 
-    river_sound_thread = threading.Thread(target=play_river_sound)
-    river_sound_thread.start()
+    # river_sound_thread = threading.Thread(target=play_river_sound)
+    # river_sound_thread.start()
     respond(speech_data)
-    river_sound_thread.start()
+    # river_sound_thread = threading.Thread(target=play_river_sound)
+    # river_sound_thread.start()
 
 
 # while True:
