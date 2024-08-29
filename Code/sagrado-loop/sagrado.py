@@ -238,7 +238,8 @@ def play_river_sound():
             river_sound = wave.open('sagrado_audio.wav', 'rb')
             data = river_sound.readframes(CHUNK)
         stream.write(data)
-    stream.stop()
+    # stream.stop()
+    river_sound.close()
     stream.close()
     print('River sound stopped.')
 
