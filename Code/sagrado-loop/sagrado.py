@@ -231,7 +231,7 @@ def play_river_sound():
                 channels = river_sound.getnchannels(),
                 rate = river_sound.getframerate(),
                 output = True)
-    stream.start()
+    # stream.start()
     while speaking==False:
         data = river_sound.readframes(CHUNK)
         if not data:
