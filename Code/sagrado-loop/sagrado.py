@@ -1,4 +1,4 @@
-import time, os, threading, requests, sounddevice, pyaudio
+import time, os, threading, requests, sounddevice, pyaudio, wave
 import numpy as np
 from numpy import array
 import traceback
@@ -102,6 +102,10 @@ def init_piper_tts():
         return sentences
 
     def text_to_speech(text):
+        global speaking
+
+        speaking=True
+        print('Avatar speech starting...')
         try:
             #Do this every time, or add generated audio to a pre-existing stream?
             stream = sd.OutputStream(samplerate=voice.config.sample_rate, channels=1, dtype='int16')
@@ -117,6 +121,8 @@ def init_piper_tts():
         except Exception as e:
             print("Error generating speech from text: ", Exception,  e)
             print(traceback.format_exc())
+        speaking=False
+        print('Avatar speech stopped.')
 
 
 # Select TTS Backend to Use:
@@ -188,6 +194,8 @@ def avatar_response(speech_text):
 
     print('Avatar response: ', avatar_response)
 
+    #Toggle speaking before and after this line instead, in contrast to within the text_to_speech function?
+    #Are there currently any overlap issues between the river sound and the avatar speech?
     text_to_speech(avatar_response)
 
 #Main loop. Listens for audio, transcribes it, passes it to Retune Avatar, 
@@ -196,10 +204,12 @@ def avatar_response(speech_text):
 # print("Listening for speech...")
 
 # avatar_mode = 'inactive'
-listening=False
-
+listening= False
+speaking= False
 # time.sleep(2.5)
 
+#Apparently PyAudio can be used to instantiate both input and output streams.
+#Use for output streams (for consistency?), or just keep using sounddevice?
 
 def listen():
     global speech_data
@@ -213,18 +223,29 @@ def listen():
     print('Listening stopped. Avatar listening: ', listening)
 
 
+def play_river_sound():
+    print('Playing river sound...')
+    river_sound = wave.open('sagrado_audio.wav', 'rb')
+    stream = sd.OutputStream(samplerate=voice.config.sample_rate, channels=1, dtype='int16')
+    stream.start()
+    while speaking==False:
+        data = river_sound.readframes(CHUNK)
+        if not data:
+            river_sound = wave.open('sagrado_audio.wav', 'rb')
+            data = river_sound.readframes(CHUNK)
+        stream.write(data)
+    stream.stop()
+    stream.close()
+    print('River sound stopped.')
+
+
 def respond(speech_data):
     print('Transcribing audio...')
     speech_text = stt_engine.speech_to_text(speech_data, SAMPLING_RATE)
 
     print('Transcription: ', speech_text)
-    # if avatar_mode == 'active':
-        # print('Transcription: ', speech_text)
     avatar_response(speech_text)
     
-    # if (avatar_mode=='inactive') and ('água' in speech_text.lower() or 'agua' in speech_text.lower()):
-    #     avatar_mode = 'active'
-    #     print('Avatar activated')
         
 
 while True:
@@ -232,9 +253,12 @@ while True:
     listener_thread = threading.Thread(target=listen)
     listening = True
     listener_thread.start()
+
     x = input('Press "Enter" key to stop listening...')
     listening=False
     print('Speech data: ', len(speech_data), speech_data.shape)
+
+    river_sound_thread = threading.Thread(target=play_river_sound)
     respond(speech_data)
 
 

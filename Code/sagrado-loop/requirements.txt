@@ -1,4 +1,5 @@
 dotenv
+wave
 
 #STT
 transformers
@@ -11,7 +12,7 @@ nltk
 #TTS
 onnxruntime==1.17.0
 Soundfile
-#TTS #Specific to TTS engine
+#TTS #Specific to Coqui TTS engine
 sounddevice
 #pyrubberband
 
