@@ -252,8 +252,8 @@ def respond(speech_data):
     avatar_response(speech_text)
     
         
-# river_sound_thread = threading.Thread(target=play_river_sound)
-# river_sound_thread.start()
+river_sound_thread = threading.Thread(target=play_river_sound, daemon=True)
+river_sound_thread.start()
 
 while True:
     x = input('\nPress "Enter" key to listen...')
